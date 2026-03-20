@@ -1,12 +1,22 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Login } from './components/login/login';
+import { Registration } from './components/registration/registration';
+import { NgIf } from '@angular/common';
+import { User } from './services/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [NgIf, RouterOutlet, Login, Registration],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('frontend-login');
+  currentPage = 'home';
+  user: User | null = null;
+
+  showLogin() { this.currentPage = 'login'; }
+  showRegister() { this.currentPage = 'register'; }
+  showHome() { this.currentPage = 'home'; }
 }

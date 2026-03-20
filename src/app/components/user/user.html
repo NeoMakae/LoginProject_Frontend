@@ -1,0 +1,12 @@
+<div *ngIf="loading" class="message">Loading user details...</div>
+
+<div *ngIf="user" class="user-details">
+  <h2>Welcome, {{ user.firstName }} {{ user.lastName }}!</h2>
+  <p>Email: {{ user.email }}</p>
+  <div class="back-link" (click)="onLogout()">← Logout</div>
+</div>
+
+<div *ngIf="!user && !loading" class="message error">
+  Could not load user details.
+  <div class="back-link" (click)="onLogout()">← Back</div>
+</div>

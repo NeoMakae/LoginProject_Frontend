@@ -1,0 +1,39 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2 class="auth-title">Sign In</h2>
+
+    <!-- Success message -->
+    <p *ngIf="message === 'success'" class="message success">
+      Login successful!
+    </p>
+
+    <!-- Error message -->
+    <p *ngIf="message === 'invalid' || error" class="message error">
+      {{ error || 'Invalid email or password.' }}
+    </p>
+
+    <form (ngSubmit)="login()" class="auth-form">
+      <div class="form-group">
+        <input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+  </div>
+</div>

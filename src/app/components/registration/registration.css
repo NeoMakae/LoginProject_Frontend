@@ -1,0 +1,99 @@
+/* Center wrapper */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  font-family: Arial, sans-serif;
+}
+
+/* Card */
+.auth-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 360px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.auth-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Title */
+.auth-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* Form */
+.auth-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.auth-form input:focus {
+  border-color: #4facfe;
+}
+
+/* Button */
+.btn-register {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4facfe;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-register:hover {
+  background-color: #00f2fe;
+}
+
+/* Messages */
+.message {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.message.error {
+  color: #e74c3c;
+}
+
+.message.success {
+  color: #27ae60;
+}
+
+/* Back link */
+.back-link {
+  margin-top: 1rem;
+}
+
+.back-link a {
+  color: #4facfe;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.back-link a:hover {
+  color: #00f2fe;
+}

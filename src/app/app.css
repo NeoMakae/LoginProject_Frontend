@@ -1,0 +1,83 @@
+/* App wrapper */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  font-family: Arial, sans-serif;
+  padding: 2rem 1rem;
+}
+
+/* Headline */
+.headline {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Home buttons */
+.home-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-home {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #4facfe;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.btn-home:hover {
+  background-color: #00f2fe;
+}
+
+/* Card layout for forms and messages */
+.auth-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 360px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Messages */
+.message {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.message.success {
+  color: #27ae60;
+}
+
+.message.error {
+  color: #e74c3c;
+}
+
+/* Back link */
+.back-link {
+  margin-top: 1rem;
+}
+
+.back-link a {
+  color: #4facfe;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.back-link a:hover {
+  color: #00f2fe;
+}
