@@ -12,6 +12,7 @@
     <app-register (pageChange)="currentPage = $event"></app-register>
   </div>
 
+
   <!-- Login form -->
   <div *ngIf="currentPage === 'login'">
     <app-login 
@@ -32,6 +33,11 @@
   <div *ngIf="currentPage === 'exists'" class="auth-card">
     <p class="message error">Ooops, the user already exists!</p>
   </div>
+
+  <!-- Success message -->
+    <p *ngIf="currentPage === 'success'" class="auth-card">
+      Login successful!
+    </p>
 
   <!-- Back button -->
   <div *ngIf="currentPage !== 'home'" class="back-link">

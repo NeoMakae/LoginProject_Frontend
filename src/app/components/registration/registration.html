@@ -2,57 +2,34 @@
   <div class="auth-card">
     <h2 class="auth-title">Register</h2>
 
-    <!-- Success message -->
-    <p *ngIf="message === 'success'" class="message success">
-      Registration successful! You can now login.
+    <!-- Success message with login button -->
+    <div *ngIf="message === 'success'" class="message success">
+      <p>You have registered successfully!</p>
+      <button class="btn-login" (click)="back.emit()">Go to Login</button>
+    </div>
+
+    <!-- Error messages -->
+    <p *ngIf="message === 'exists'" class="message error">
+      User already exists!
+    </p>
+    <p *ngIf="message === 'error'" class="message error">
+      Registration failed. Try again.
     </p>
 
-    <!-- Error message -->
-    <p *ngIf="message === 'exists' || message === 'error'" class="message error">
-      {{ message === 'exists' ? 'User already exists!' : 'Registration failed. Try again.' }}
-    </p>
-
-    <form *ngIf="!message || message === 'error'" (ngSubmit)="register()" class="auth-form">
+    <!-- Registration form -->
+    <form *ngIf="!message || message === 'error' || message === 'exists'" (ngSubmit)="register()" class="auth-form">
       <div class="form-group">
-        <input
-          type="text"
-          placeholder="First Name"
-          [(ngModel)]="firstName"
-          name="firstName"
-          required
-        />
+        <input type="text" placeholder="First Name" [(ngModel)]="firstName" name="firstName" required />
       </div>
-
       <div class="form-group">
-        <input
-          type="text"
-          placeholder="Last Name"
-          [(ngModel)]="lastName"
-          name="lastName"
-          required
-        />
+        <input type="text" placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required />
       </div>
-
       <div class="form-group">
-        <input
-          type="email"
-          placeholder="Email"
-          [(ngModel)]="email"
-          name="email"
-          required
-        />
+        <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
       </div>
-
       <div class="form-group">
-        <input
-          type="password"
-          placeholder="Password"
-          [(ngModel)]="password"
-          name="password"
-          required
-        />
+        <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required />
       </div>
-
       <button type="submit" class="btn-register">Register</button>
     </form>
   </div>

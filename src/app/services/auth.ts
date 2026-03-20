@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export interface User {
@@ -12,6 +12,10 @@ export interface User {
 export interface LoginResponse {
   message: string;
   user: User | null;
+}
+
+export interface RegisterResponse {
+  message: string;
 }
 
 export interface RegisterRequest {
@@ -34,11 +38,15 @@ export class Auth {
 
   constructor(private http: HttpClient) {}
 
-  register(request: RegisterRequest): Observable<string> {
-    return this.http
-      .post(`${this.baseUrl}/register`, request, { responseType: 'text' })
-      .pipe(catchError(this.handleError));
-  }
+register(request: RegisterRequest): Observable<RegisterResponse> {
+  return this.http.post<RegisterResponse>(`${this.baseUrl}/register`, request).pipe(
+    catchError((error) => {
+      // Grab the backend message if it exists
+      const msg = error.error?.message || 'error';
+      return of({ message: msg }); // return an observable so it goes to 'next'
+    })
+  );
+}
 
   login(request: LoginRequest): Observable<LoginResponse> {
     return this.http

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { Auth, RegisterRequest } from '../../services/auth';
+import { Auth, RegisterRequest, RegisterResponse } from '../../services/auth';
 
 @Component({
   selector: 'app-register',
@@ -35,19 +35,22 @@ export class Registration {
   };
 
   this.authService.register(request).subscribe({
-    next: (res: string) => {
-      console.log('Registration result:', res);
-      if (res === 'User registered successfully!') {
-        this.pageChange.emit('success');
-      } else if (res === 'Username already exists!') {
-        this.pageChange.emit('exists');
-      }
-    },
-    error: (err: any) => {
-      console.error('Registration error:', err);
-      this.pageChange.emit('error');
-      this.message = 'error';
+  next: (res: RegisterResponse) => {
+    console.log('Registration result:', res.message);
+    if (res.message === 'success') {
+      this.message = 'success'
+        console.log('Here :', this.message);
+      this.pageChange.emit('success');
+    } else if (res.message === 'exists') {
+       this.message = 'exists';
+      this.pageChange.emit('exists');
     }
-  });
+  },
+  error: (err: any) => {
+    console.error('Registration error:', err);
+    this.pageChange.emit('error');
+    this.message = 'error';
+  }
+});
 }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Auth, LoginResponse, User } from '../../services/auth';
@@ -22,7 +22,7 @@ export class Login {
   @Output() pageChange = new EventEmitter<string>();
   @Output() loginSuccess = new EventEmitter<User>();
 
-  constructor(private authService: Auth) {}
+  constructor(private authService: Auth, private cdr: ChangeDetectorRef) {}
 
   login() {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
@@ -31,14 +31,11 @@ export class Login {
           this.user = res.user;
           this.loginSuccess.emit(this.user);     
           this.pageChange.emit('userDetails');   
-        } else {
-          this.pageChange.emit('invalid');
-          this.message = 'invalid';
-        }
+        } 
       },
       error: (err: any) => {
-        console.error('Login error:', err);
         this.message = 'invalid';
+        this.cdr.detectChanges(); //this helped me for cases where angular didn't detect changes on th first click
       },
     });
   }
